@@ -15,6 +15,8 @@
 # specific language governing permissions and limitations
 # under the License.
 """The WebDriver implementation."""
+from __future__ import annotations  # for v3.9 compatibility
+
 import base64
 import contextlib
 import copy
@@ -614,7 +616,7 @@ class WebDriver(BaseWebDriver):
         """
         self.execute(Command.DELETE_ALL_COOKIES)
 
-    def add_cookie(self, cookie_dict) -> None:
+    def add_cookie(self, cookie_dict: dict[str, Union[bool, int, str]]) -> None:
         """Adds a cookie to your current session.
 
         :Args:
