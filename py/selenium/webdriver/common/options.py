@@ -14,6 +14,8 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+from __future__ import annotations  # for v3.9 compatibility
+
 import typing
 from abc import ABCMeta
 from abc import abstractmethod
@@ -410,15 +412,15 @@ class ArgOptions(BaseOptions):
 
     def __init__(self) -> None:
         super().__init__()
-        self._arguments = []
-        self._ignore_local_proxy = False
+        self._arguments: list[str] = []
+        self._ignore_local_proxy: bool = False
 
     @property
-    def arguments(self):
+    def arguments(self) -> list[str]:
         """:Returns: A list of arguments needed for the browser."""
         return self._arguments
 
-    def add_argument(self, argument) -> None:
+    def add_argument(self, argument: str) -> None:
         """Adds an argument to the list.
 
         :Args:

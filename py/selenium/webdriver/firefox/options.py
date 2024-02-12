@@ -14,7 +14,9 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-from typing import Union
+from __future__ import annotations  # for v3.9 compatibility
+
+from typing import Optional, Union
 
 from typing_extensions import deprecated
 
@@ -39,9 +41,9 @@ class Options(ArgOptions):
 
     def __init__(self) -> None:
         super().__init__()
-        self._binary_location = ""
-        self._preferences: dict = {}
-        self._profile = None
+        self._binary_location: str = ""
+        self._preferences: dict[str, Union[str, int, bool]] = {}
+        self._profile: Optional[FirefoxProfile] = None
         self.log = Log()
 
     @property
@@ -72,7 +74,7 @@ class Options(ArgOptions):
         self._binary_location = value
 
     @property
-    def preferences(self) -> dict:
+    def preferences(self) -> dict[str, Union[str, int, bool]]:
         """:Returns: A dict of preferences."""
         return self._preferences
 
